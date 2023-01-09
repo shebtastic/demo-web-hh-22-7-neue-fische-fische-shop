@@ -1,8 +1,9 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-import articles from "../../db.json";
+// import articles from "../../db.json";
+import { getAllArticles } from "../../../helpers/db";
 
-export default function handler(request, response) {
+export default async function handler(request, response) {
   //serverless functions
   // response.status(200).send({ name: 'John Doe' })
   console.log(request.method);
@@ -10,6 +11,7 @@ export default function handler(request, response) {
 
   switch (request.method) {
     case "GET": {
+      const articles = await getAllArticles();
       response.status(200).json(articles);
       break;
     }
