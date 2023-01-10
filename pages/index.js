@@ -36,6 +36,7 @@ export default function Home() {
           ))
         )}
       </ul>
+      <Link href={"/create"}>Add new Article</Link>
     </>
   );
 }

@@ -1,4 +1,5 @@
 import mongoose, { model, models, Schema } from "mongoose";
+import crypto from "crypto";
 
 const URI = `mongodb+srv://michael:${process.env.MONGODB_PASSWORD}@cluster0.pjgtprn.mongodb.net/?retryWrites=true&w=majority`;
 
@@ -30,4 +31,15 @@ async function getArticle(id) {
   return article;
 }
 
-export { getAllArticles, getArticle };
+async function createArticle(article) {
+  await connectDatabase();
+
+  const createdArticle = await Article.create({
+    ...article,
+    id: crypto.randomUUID(),
+  });
+
+  return createdArticle;
+}
+
+export { getAllArticles, getArticle, createArticle };
