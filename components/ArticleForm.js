@@ -16,7 +16,7 @@ function ArticleForm({ onSubmit, defaultData }) {
       <div>
         <label htmlFor="name-input">Name</label>
         <input
-          defaultValue={defaultData.name}
+          defaultValue={defaultData?.name}
           id="name-input"
           type="text"
           name="name"
@@ -25,7 +25,7 @@ function ArticleForm({ onSubmit, defaultData }) {
       <div>
         <label htmlFor="category-input">Categories</label>
         <input
-          defaultValue={defaultData.categories[0]}
+          defaultValue={defaultData?.categories?.[0]}
           id="category-input"
           type="text"
           name="categories"

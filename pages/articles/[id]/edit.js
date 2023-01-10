@@ -11,20 +11,28 @@ export default function EditPage() {
 
   const { data: article, isLoading, error } = useSWR(`/api/articles/${id}`);
 
-  if (!isReady || isLoading || error) return <h1>Loading...</h1>;
-
-  function edit(article) {
+  function editArticle(article) {
     fetch(`/api/articles/${id}`, {
       method: "PATCH",
       body: JSON.stringify(article),
     });
   }
 
+  async function deleteArticle() {
+    await fetch(`/api/articles/${id}`, {
+      method: "DELETE",
+    });
+    router.push("/");
+  }
+
+  if (!isReady || isLoading || error) return <h1>Loading...</h1>;
+
   return (
     <>
       <Link href={`/articles/${id}`}>Go Back</Link>
       <h1>{id}</h1>
-      <ArticleForm defaultData={article} onSubmit={edit} />
+      <ArticleForm defaultData={article} onSubmit={editArticle} />
+      <button onClick={deleteArticle}>Delete Article</button>
     </>
   );
 }
