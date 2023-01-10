@@ -42,4 +42,35 @@ async function createArticle(article) {
   return createdArticle;
 }
 
-export { getAllArticles, getArticle, createArticle };
+async function updateArticle(id, article) {
+  await connectDatabase();
+
+  await Article.updateOne(
+    {
+      id,
+    },
+    article
+  );
+
+  const updatedArticle = getArticle(id);
+
+  return updatedArticle;
+}
+
+async function deleteArticle(id) {
+  await connectDatabase();
+
+  const deletedArticle = getArticle(id);
+  await Article.deleteOne({
+    id,
+  });
+  return deletedArticle;
+}
+
+export {
+  getAllArticles,
+  getArticle,
+  createArticle,
+  deleteArticle,
+  updateArticle,
+};

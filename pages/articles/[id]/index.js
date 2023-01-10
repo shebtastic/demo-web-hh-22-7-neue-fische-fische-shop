@@ -22,6 +22,7 @@ export default function DetailsPage() {
           <li key={category}>{category}</li>
         ))}
       </ul>
+      <Link href={`/articles/${id}/edit`}>Artikel editieren</Link>
     </>
   );
 }
