@@ -7,7 +7,12 @@ export default function DetailsPage() {
   const { isReady } = router;
   const { id } = router.query;
 
-  const { data: article, isLoading, error } = useSWR(`/api/articles/${id}`);
+  const {
+    data: article,
+    isLoading,
+    error,
+    mutate,
+  } = useSWR(`/api/articles/${id}`);
 
   if (!isReady || isLoading || error) return <h1>Loading...</h1>;
 

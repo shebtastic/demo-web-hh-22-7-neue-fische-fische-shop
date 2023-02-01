@@ -1,4 +1,4 @@
-function ArticleForm({ onSubmit, defaultData }) {
+function ArticleForm({ onSubmit, isSubmitting, defaultData }) {
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -8,7 +8,9 @@ function ArticleForm({ onSubmit, defaultData }) {
       categories: formData.getAll("categories"),
     };
 
-    onSubmit(data);
+    if (!isSubmitting) {
+      onSubmit(data);
+    }
   }
 
   return (
@@ -31,7 +33,9 @@ function ArticleForm({ onSubmit, defaultData }) {
           name="categories"
         />
       </div>
-      <button type="submit">Submit</button>
+      <button type="submit" disabled={isSubmitting}>
+        Submit
+      </button>
     </form>
   );
 }

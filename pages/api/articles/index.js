@@ -14,6 +14,7 @@ export default async function handler(request, response) {
       const article = JSON.parse(request.body);
       const createdArticle = await createArticle(article);
       response.status(201).json(createdArticle);
+      // response.status(500).json({ message: "omg" });
       break;
     }
     default: {

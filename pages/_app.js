@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { SWRConfig } from "swr";
 
 export default function App({ Component, pageProps }) {
@@ -13,6 +14,7 @@ export default function App({ Component, pageProps }) {
         },
       }}
     >
+      {/* <Component articles={state} addArticle={addArticle} {...pageProps} /> */}
       <Component {...pageProps} />
     </SWRConfig>
   );
